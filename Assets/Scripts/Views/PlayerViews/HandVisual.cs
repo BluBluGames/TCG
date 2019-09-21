@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardOnBoardController : MonoBehaviour
+public class HandVisual : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -15,10 +14,5 @@ public class CardOnBoardController : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public void TakeDamage(int damageDealt)
-    {
-        throw new NotImplementedException();
     }
 }
