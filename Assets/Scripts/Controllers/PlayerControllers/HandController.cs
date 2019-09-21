@@ -7,5 +7,6 @@ using UnityEngine;
 /// </summary>
 public class HandController : MonoBehaviour
 {
+    ///<value>Holds all cards in hand as List</value>
     public List<CardController> CardsInHand = new List<CardController>();
 }

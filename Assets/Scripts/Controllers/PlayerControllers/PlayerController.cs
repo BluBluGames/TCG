@@ -11,11 +11,17 @@ public class PlayerController : MonoBehaviour
     public FrontRowController frontRow;
     public BackRowController backRow;
 
+    public bool IsCardAllowedToBePlayed { get; set; }
+
     internal void OnTurnStart()
     {
     }
 
-    internal void PlayCardFromHand(CardController chosenCard, int v)
+    internal void PlayCardFromHand(CardController chosenCard, int chosenRow)
     {
+        if (IsCardAllowedToBePlayed)
+        {
+
+        }
     }
 }
