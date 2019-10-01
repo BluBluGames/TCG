@@ -8,9 +8,9 @@ public class DealDamageCommand : Command
     private int TargetID { get; }
     private int DamageDealt { get; }
 
-    public DealDamageCommand(PlayerController ownerOfCardBeingDamaged, int targetID, int damageDealt)
+    public DealDamageCommand(PlayerController cardOwner, int targetID, int damageDealt)
     {
-        OwnerOfCardBeingDamaged = ownerOfCardBeingDamaged;
+        OwnerOfCardBeingDamaged = cardOwner;
         TargetID = targetID;
         DamageDealt = damageDealt;
     }
@@ -18,8 +18,36 @@ public class DealDamageCommand : Command
     public override void ExecuteCommand()
     {
         GameObject target = IDHolder.GetGameObjectWithID(TargetID);
-        target.GetComponent<CardOnBoardController>().TakeDamage(DamageDealt);
-        //OwnerOfCardBeingDamaged;
+        CardOnBoardController targetCard = CardOnBoardController.CardsPlayedThisGame[TargetID];
 
+        int currentTargetedCardHealth = targetCard.CardHealth;
+
+        if (currentTargetedCardHealth > DamageDealt)
+        {
+            targetCard.CardHealth -= DamageDealt;
+            targetCard.cardOwner.PlayerHealth -= DamageDealt;
+        }
+        else
+        {
+            int healthToSubtract = targetCard.CardHealth;
+            targetCard.CardHealth -= healthToSubtract;
+            targetCard.cardOwner.PlayerHealth -= healthToSubtract;
+        }
+
+        if (targetCard.CardHealth<=0)
+        {
+            new DestroyObjectCommand(target).AddToQueue();
+        }
+
+        if (GameManager.IsHeadlessMode == false)
+        {
+            if (GameManager.IsHeadlessMode == false)
+            {
+                target.GetComponent<CardOnBoardView>().healthText.text = targetCard.CardHealth.ToString();
+                targetCard.cardOwner.playerView.playerHealth.playerHealth.text = targetCard.cardOwner.PlayerHealth.ToString();
+            }
+        }
+
+        CommandExecutionComplete();
     }
 }

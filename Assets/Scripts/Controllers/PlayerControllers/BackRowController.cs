@@ -7,6 +7,9 @@ using UnityEngine;
 /// </summary>
 public class BackRowController : MonoBehaviour
 {
+    ///<value>holds number of cards player can have in this row</value>
+    public readonly int rowLimit = 7;
+
     public List<CardOnBoardController> CardsOnBackRow = new List<CardOnBoardController>();
 
     /// <summary>
@@ -14,7 +17,7 @@ public class BackRowController : MonoBehaviour
     /// </summary>
     /// <param name="index"></param>
     /// <param name="cardOnBackRow"></param>
-    public void PlaceCreatureAt(int index, CardOnBoardController cardOnBackRow)
+    public void PlaceCardat(int index, CardOnBoardController cardOnBackRow)
     {
         CardsOnBackRow.Insert(index, cardOnBackRow);
     }

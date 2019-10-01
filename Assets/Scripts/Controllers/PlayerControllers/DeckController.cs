@@ -11,11 +11,11 @@ using UnityEngine;
 public class DeckController : MonoBehaviour
 {
     ///<value>Holds all cards in deck as List</value>
-    public List<CardAsset> cards = new List<CardAsset>();
+    public List<CardAsset> cardsInDeck = new List<CardAsset>();
 
     void Awake()
     {
-        ShuffleCards(cards);
+        ShuffleCards(cardsInDeck);
     }
 
     /// <summary>

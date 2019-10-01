@@ -2,17 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealCommand : MonoBehaviour
+public class HealCommand : Command
 {
-    // Start is called before the first frame update
-    void Start()
+    private PlayerController CardOwner { get; }
+    private int TargetID { get; }
+    private int HealingDealt { get; }
+
+    public HealCommand(PlayerController cardOwner, int targetID, int healingDealt)
     {
-        
+        CardOwner = cardOwner;
+        TargetID = targetID;
+        HealingDealt = healingDealt;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void ExecuteCommand()
     {
-        
+        GameObject target = IDHolder.GetGameObjectWithID(TargetID);
+        CardOnBoardController targetCard = CardOnBoardController.CardsPlayedThisGame[TargetID];
+
+        targetCard.CardHealth += HealingDealt;
+        targetCard.cardOwner.PlayerHealth += HealingDealt;
+
+        if (GameManager.IsHeadlessMode == false)
+        {
+            target.GetComponent<CardOnBoardView>().healthText.text = targetCard.CardHealth.ToString();
+            targetCard.cardOwner.playerView.playerHealth.playerHealth.text = targetCard.cardOwner.PlayerHealth.ToString();
+        }
+
+        CommandExecutionComplete();
     }
 }

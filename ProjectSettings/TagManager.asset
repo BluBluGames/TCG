@@ -3,7 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - LowHand
+  - TopCard
+  - BottomCard
+  - TopPlayer
+  - BottomPlayer
+  - TopHand
+  - BottomPlayerHand
+  - TopCardOnBackRow
+  - BottomCardOnBackRow
+  - TopCardOnFrontRow
+  - BottomCardOnFrontRow
   layers:
   - Default
   - TransparentFX
@@ -38,6 +49,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Board
+    uniqueID: 3497432885
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Cards
+    uniqueID: 3927580295
+    locked: 0
+  - name: Above
+    uniqueID: 2741218299
     locked: 0

@@ -11,6 +11,16 @@ public class Command
     public static bool executingQueue = false;
 
     /// <summary>
+    /// Adds item to queue - will be executed after all previously added elements were
+    /// </summary>
+    public virtual void AddToQueue()
+    {
+        CommandQueue.Enqueue(this);
+        if (!executingQueue)
+            ExecuteFirstCommandFromQueue();
+    }
+
+    /// <summary>
     /// Used to list all steps that need to be done in current command - every command should implement this
     /// </summary>
     public virtual void ExecuteCommand()

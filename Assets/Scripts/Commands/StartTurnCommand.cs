@@ -24,7 +24,12 @@ public class StartTurnCommand : Command
     /// </summary>
     public override void ExecuteCommand()
     {
-        GameManager.Instance.whoseTurn = player;
+        if (Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+        }
+        
+        GameManager.Instance.WhoseTurn = player;
         CommandExecutionComplete();
     }
 }
